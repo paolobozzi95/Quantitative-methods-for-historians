@@ -1,9 +1,18 @@
 
 #R very basic operations
 
-#sum
 
 #creating a vector
+v <- c(1, 2, 3, 4)
+
+
+#calculate the mean
+
+
+
+
+
+
 v <- c(1, 2, 3, 4)
 #sum of vectors
 
@@ -44,13 +53,30 @@ sd(v)
 summary()
 
 
+#Set a new working directory#
+setwd("C:/Users/paolo/Dropbox/WiSe 2025-2026/QMH (WiSe 2025-2026)/Quantitative-methods-for-historians")
 
+getwd()
 
 #install.packages("readxl")
 library(readxl)
 
-data <- read_excel("C:/Users/paolo/Downloads/data.xlsx")
+Fabian_1961    <- read_excel("Fabian_1961.xlsx")
+Korbinian_1971 <- read_excel("Korbinian_1971.xlsx")
+Korbinian_1981 <- read_excel("Korbinian_1981.xlsx")
+Kristina_1971  <- read_excel("Kristina_1971.xlsx")
+Kristina_1981  <- read_excel("Kristina_1981.xlsx")
 
+
+
+
+
+
+
+#Open the data (example task)
+GDP <- read_excel("GDP.xlsx")
+
+data <- read_excel("education.xlsx")
 
 ####Part 1 - Exploring data####
 
@@ -69,6 +95,10 @@ data <- data %>% select(-student)
 
 data <- data %>%
   filter(!is.na(schools_primary) & schools_primary != '') 
+
+  
+  
+library(ggplot2)
 
 # Create the bar plot
 p <- ggplot(school_counts, aes(x = reorder(province, -schools_primary), y = schools_primary)) +
