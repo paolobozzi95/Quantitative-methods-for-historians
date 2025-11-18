@@ -107,6 +107,13 @@ map_data <- map_data %>%
   rename(province = DEN_PROV)
 
 
+#Expand the map data to include all years and avoid empty areas - not strictly necessary
+provs_years <- expand.grid(province = map_data$province, 
+                           year = unique(wage_data_compact$year))
+
+merged_data <- provs_years %>%
+  left_join(wage_data_compact, by = c("province", "year"))
+
 
 
 
