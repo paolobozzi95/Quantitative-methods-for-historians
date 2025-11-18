@@ -114,6 +114,21 @@ provs_years <- expand.grid(province = map_data$province,
 merged_data <- provs_years %>%
   left_join(wage_data_compact, by = c("province", "year"))
 
+#Attach map geometry
+merged_data <- map_data %>%
+  left_join(merged_data, by = "province")
 
 
+#Let's draw the map for wages in 1971
+library(ggplot2)
+
+map_1961 <- merged_data %>%
+  filter(year == 1961) %>%
+  ggplot() +
+  geom_sf(aes(fill = subalterno), color = "black") +
+  scale_fill_viridis_c(option = "plasma",
+                       na.value = "lightgray",
+                       name = "Wage\n(Subalterni)") +
+  theme_minimal()
+map_1961
 
