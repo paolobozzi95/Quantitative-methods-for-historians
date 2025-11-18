@@ -126,9 +126,10 @@ map_1961 <- merged_data %>%
   filter(year == 1961) %>%
   ggplot() +
   geom_sf(aes(fill = subalterno), color = "black") +
-  scale_fill_viridis_c(option = "plasma",
-                       na.value = "lightgray",
-                       name = "Wage\n(Subalterni)") +
+  scale_fill_gradient(low = "lightblue", 
+                      high = "navy", na.value = "grey80") +
   theme_minimal()
 map_1961
+
+
 
