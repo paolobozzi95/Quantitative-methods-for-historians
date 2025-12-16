@@ -158,6 +158,7 @@ df_iv <- df_iv %>%
 
 
 #Is it a good instrument?
+
 model_test <- feols(family_size ~ share_religious,
                     
                     data = df_iv)
