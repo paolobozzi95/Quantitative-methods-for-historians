@@ -55,6 +55,7 @@ master_data_elec <- master_data_elec %>%
 #5. Treatment-Variablen erstellen
 #not necessary: our treatment is the variable "north" 
 
+
 #6. Diff-in-Diff Modell schätzen
 library(fixest)
 
