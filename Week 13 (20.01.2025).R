@@ -134,7 +134,7 @@ ggplot(plot_data, aes(x = year, y = estimate, color = group, group = group)) +
   scale_color_manual(values = c("North" = "red", "Baseline" = "black")) +
   
   # 6. Labels and Formatting
-  labs(x = "Year", y = "% change in DC voting", title = "Event Study Estimates") +
+  labs(x = "Year", y = "% change in DC voting", title = "Impact of the reform on DC voting") +
   #theme_minimal, no grid, but solid x and y axes
   theme_minimal() +
   theme(legend.title = element_blank(),

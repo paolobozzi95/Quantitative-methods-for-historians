@@ -5,7 +5,11 @@ setwd("C:/Users/paolo/Dropbox/WiSe 2025-2026/QMH (WiSe 2025-2026)/QMH data")
 library(readxl)
 wage_data_compact <- read_excel("wage_data_compact.xlsx")
 GDP <- read_excel("GDP.xlsx")
+<<<<<<< HEAD
 population <- read_excel ("population.xlsx")   
+=======
+population <- read_excel ("population.xlsx")
+>>>>>>> 45254cfd6d4699a6fffb816aa573c766d3cefe6b
 education <- read_excel("education.xlsx")
 
 # Load packages
@@ -79,5 +83,8 @@ data_1961 <- data %>%
 model4 <- feols(wage ~ share_students + GDP_pc_lire, 
                 cluster = ~province, data = data_1961)
 summary(model4)
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 45254cfd6d4699a6fffb816aa573c766d3cefe6b
