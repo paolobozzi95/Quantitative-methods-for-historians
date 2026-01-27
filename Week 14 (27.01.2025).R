@@ -17,7 +17,7 @@ GDP_data <- read_excel("TRADHIST_GDP_POP.xlsx")
 
 library(ggplot2)
 library(ggraph)
-
+library(igraph)
 library(dplyr)
 
 df <- trade_data %>%
@@ -48,11 +48,9 @@ nodes <- df_1913 %>%
 
 trade_graph_1913 <- graph_from_data_frame(d = df_1913, vertices = nodes, directed = TRUE)
 
-trade_graph_1970 <- graph_from_data_frame(d = df_1970, vertices = nodes, directed = TRUE)
-
 
 # Plot the trade network
-plot_1913 <- ggraph(trade_graph_1913, layout = "fr") +  # Fruchterman-Reingold layout
+plot_1913 <- ggraph(trade_graph_1913, layout = "stress") +  # Fruchterman-Reingold layout
   geom_edge_link(aes(width = FLOW), alpha = 0.8, color = "gray") + # Set 
   # edge width based on total flow
   geom_node_point(aes(size = GDP), color = "blue") + # Node sizes based on 
@@ -65,15 +63,18 @@ plot_1913 <- ggraph(trade_graph_1913, layout = "fr") +  # Fruchterman-Reingold l
 print(plot_1913)
 
 
+
 #Compute main measures
-glimpse(trade_graph_1913)
+#glimpse(trade_graph_1913)
 
 edge_density(trade_graph_1913)
 
 transitivity(trade_graph_1913, type = "global")
 
 # Calculate centrality
-ev_cent <- eigen_centrality(trade_graph_1913, directed = TRUE, weights = E(trade_graph_1913)$FLOW)
+ev_cent <- eigen_centrality(trade_graph_1913, 
+                            directed = TRUE, 
+                            weights = E(trade_graph_1913)$FLOW)
 ev_cent$vector
 
 
@@ -97,10 +98,6 @@ ev_cent$vector
 
 
 
-library(tidygraph)
-library(ggraph)
-library(dplyr)
-library(igraph)
 
 library(tidygraph)
 library(ggraph)
@@ -157,3 +154,19 @@ plot_1970 <- trade_graph %>%
 # Print results
 print(plot_1913)
 print(plot_1970)
+
+#Save as jpeg
+ggsave("trade_network_1913.jpeg", plot = plot_1913, width = 10, height = 8)
+ggsave("trade_network_1970.jpeg", plot = plot_1970, width = 10, height = 8)
+
+
+
+#Density and transitivity 1970
+edge_density(trade_graph_1970)
+
+transitivity(trade_graph_1970, type = "global")
+
+# Calculate centrality
+
+
+
